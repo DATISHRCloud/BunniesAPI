@@ -1,33 +1,32 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
 
-# Precompiled Headers
-*.gch
-*.pch
+# Visual Studio Code
+.vscode
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
+# Visual Studio 2015
+.vs/
