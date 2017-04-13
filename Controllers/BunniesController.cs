@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -10,17 +11,29 @@ namespace BunniesAPI.Controllers
     {
         private BunniesCollection bunnies;
 
+        ///<summary>
+        ///Bunnies controller
+        ///</summary>
         public BunniesController(IMemoryCache memoryCache)
         {
             bunnies = new BunniesCollection(memoryCache);
         }
 
+        ///<summary>
+        /// Gets a bundle of bunnies!
+        ///</summary>
+        ///<returns>Cuteness overload!</returns>
         [HttpGet]
         public IActionResult GetBunnies()
         {
             return Ok(bunnies);
         }
 
+        ///<summary>
+        /// Gets a cute little furball by id
+        ///</summary>
+        ///<param name="id">The UID of the bunny</param>
+        ///<returns>I'll give you 3 guesses</returns>
         [HttpGet("{id}")]
         public IActionResult GetBunny(string id)
         {
@@ -35,8 +48,15 @@ namespace BunniesAPI.Controllers
             return NotFound();
         }
 
+        ///<summary>
+        /// Creates a new furry friend
+        ///</summary>
+        ///<remarks>
+        /// You can set the ID property, but I'll just ignore it.
+        ///</remarks>
+        ///<param name="value">The adorable new baby bunny</param>
         [HttpPost]
-        public IActionResult Post([FromBody]Bunny value)
+        public IActionResult Post([FromBody, Required]Bunny value)
         {
             try
             {
