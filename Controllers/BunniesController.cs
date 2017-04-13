@@ -23,8 +23,12 @@ namespace BunniesAPI.Controllers
         /// Gets a bundle of bunnies!
         ///</summary>
         ///<returns>Cuteness overload!</returns>
+        ///<response code="200">Look at all the bunnies! (❤ω❤)</response>
+        ///<response code="404">Where did all the bunnies go??</response>
         [HttpGet]
-        public IActionResult GetBunnies()
+        [ProducesResponseType(typeof(BunniesCollection), 200)]
+        [ProducesResponseType(typeof(BunniesCollection), 404)]
+        public IActionResult GetBunnies(    )
         {
             return Ok(bunnies);
         }
@@ -55,7 +59,11 @@ namespace BunniesAPI.Controllers
         /// You can set the ID property, but I'll just ignore it.
         ///</remarks>
         ///<param name="value">The adorable new baby bunny</param>
+        ///<response code="201">A new bunny is born!</response>
+        ///<response code="400">You're not very good at making bunnies...</response>
         [HttpPost]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(typeof(string), 400)]
         public IActionResult Post([FromBody, Required]Bunny value)
         {
             try
