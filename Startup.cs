@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
-using Swashbuckle.AspNetCore;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace BunniesAPI
@@ -34,6 +29,23 @@ namespace BunniesAPI
             // Add framework services.
             services.AddMemoryCache();
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Bunnies API",
+                    Description = "Get some bunnies!  So cute!",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Travis Williams", Email = "twilliams@datis.com", Url = "http://www.datis.com" },
+                    License = new License { Name = "Use under MIT License", Url = "https://opensource.org/licenses/MIT" }
+                });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "BunniesAPI.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +55,15 @@ namespace BunniesAPI
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bunnies API v1");
+            });
         }
     }
 }
