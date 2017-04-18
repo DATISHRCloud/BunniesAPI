@@ -1,0 +1,17 @@
+﻿.swagger-section #header {
+    border-bottom: solid 5px #ff8d00;
+    font: large Arial bold;
+    background: white;
+}
+
+.logo__title {
+    padding: 0 10px;
+}
+
+.swagger-section #explore {
+    background-color: #ff8d00;
+}
+
+#select_document {
+   background-color: #ff8d00 !important;
+}
