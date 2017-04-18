@@ -16,4 +16,4 @@ Check it! https://github.com/domaindrivendev/Swashbuckle.AspNetCore
 
 **Step4:** Even more Swagger doc customization through XML documentation.
 
-**Step5:** UI customization through custom javascript and css injection.  Pretty!  \(★ω★)/
+**Step5:** UI customization through custom javascript and css injection.  Pretty!  \\(★ω★)/
